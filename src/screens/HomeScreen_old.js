@@ -1,6 +1,5 @@
 import React, {useState, useEffect}  from 'react';
 import { View, StyleSheet, Text, ScrollView, ImageBackground } from 'react-native';
-import { Header } from 'react-native-elements';
 import kawalcorona from '../api/kawalcorona';
 
 const HomeScreen = () => {
@@ -20,12 +19,7 @@ const HomeScreen = () => {
 
 
   return (
-
     <ScrollView>
-    <Header
-      centerComponent={{ text: 'Covid19 Sambu', style: { color: '#fff', fontWeight:'bold' } }}
-      rightComponent={{ icon: 'refresh', color: '#fff' }}
-    />
     <View style={styles.container}>
     <ImageBackground style={styles.backgroundStyle}
       source={{ uri: 'https://www.icsi.org/wp-content/uploads/2020/04/shutterstock_1687243246-e1587657001683.jpg' }}
@@ -74,6 +68,7 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 30,
   },
   backgroundStyle: {
     marginTop: 10,
