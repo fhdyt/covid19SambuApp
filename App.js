@@ -14,7 +14,7 @@ const navigator = createStackNavigator(
   },
   {
     defaultNavigationOptions: {
-      header: null
+      header: () => false,
     },
   }
 );

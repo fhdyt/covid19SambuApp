@@ -21,12 +21,12 @@ const ProvinsiScreen = () => {
 
 
   return (
-    
+
     <View style={styles.container}>
       <SafeAreaView forceInset={{top: 'always'}}>
       <Text style={styles.Header}>Penyebaran Perprovinsi</Text>
       <FlatList
-      
+        showsVerticalScrollIndicator={false}
         data={result}
         keyExtractor={(provinsi) => provinsi.attributes.Kode_Provi}
         renderItem={({ item }) => {
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical : 10,
     color: '#777777'
-    
+
   },
   Detail: {
     marginHorizontal: 10,
