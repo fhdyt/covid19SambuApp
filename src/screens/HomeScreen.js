@@ -2,8 +2,11 @@ import React, {useState, useEffect}  from 'react';
 import { View, StyleSheet, Text, ScrollView, ImageBackground } from 'react-native';
 import { Header } from 'react-native-elements';
 import kawalcorona from '../api/kawalcorona';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { SafeAreaView } from 'react-navigation';
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
+  
   const [term, setTerm] = useState('');
   const [result, setResult] = useState([]);
 
@@ -20,13 +23,10 @@ const HomeScreen = () => {
 
 
   return (
-
+    <SafeAreaView forceInset={{top: 'always'}}>
     <ScrollView>
-    <Header
-      centerComponent={{ text: 'Covid19 Sambu', style: { color: '#fff', fontWeight:'bold' } }}
-      rightComponent={{ icon: 'refresh', color: '#fff' }}
-    />
     <View style={styles.container}>
+    <Text style={styles.Header}>Total Indonesia</Text>
     <ImageBackground style={styles.backgroundStyle}
       source={{ uri: 'https://www.icsi.org/wp-content/uploads/2020/04/shutterstock_1687243246-e1587657001683.jpg' }}
       imageStyle={{ borderRadius: 10 }}
@@ -66,20 +66,39 @@ const HomeScreen = () => {
       <Text note style={styles.subtitle}>Dirawat</Text>
     </View>
     </ImageBackground>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('Provinsi')}
+    >
+    <Text style={styles.Provinsi}>Lihat data perprovinsi</Text>
+    </TouchableOpacity>
     </View>
+    
     </ScrollView>
+    </SafeAreaView>
   )
 };
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    marginTop: 0,
+    marginHorizontal: 15,
   },
   backgroundStyle: {
     marginTop: 10,
-    height: 150,
-    borderRadius: 5,
-    marginHorizontal: 15,
+    height: 130,
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+
+elevation: 5,
+    
     marginBottom: 10,
   },
   backgroundView: {
@@ -92,14 +111,24 @@ const styles = StyleSheet.create({
   },
   total: {
     color: 'white',
-    fontSize: 50,
+    fontSize: 35,
     fontWeight: 'bold'
   },
   subtitle: {
     color:'white',
-    fontSize: 25,
+    fontSize: 18,
     fontWeight: 'bold'
+  },
+  Header: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: '#5f6769',
+  },
+  Provinsi : {
+    color : 'blue'
   }
 });
+
+
 
 export default HomeScreen;
