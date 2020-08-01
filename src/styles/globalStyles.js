@@ -8,6 +8,6 @@ export default StyleSheet.create({
     },
     Header: {
         fontWeight: 'bold',
-        color: '#5f6769',
+        color: '#8994A1',
     },
 });

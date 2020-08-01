@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     headerStyle: {
       flex: 1,
       flexDirection: 'row',
+      marginBottom: 15
     },
     headerStyleTitle: {
       //alignSelf: 'center',

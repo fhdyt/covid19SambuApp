@@ -6,7 +6,7 @@ import HomeScreen from './src/screens/HomeScreen';
 import ProvinsiScreen from './src/screens/ProvinsiScreen';
 import SigninScreen from './src/screens/SigninScreen';
 import SignupScreen from './src/screens/SignupScreen';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 
 import { Provider as AuthProvider } from './src/context/AuthContext';
@@ -14,6 +14,7 @@ import { setNavigator } from './src/navigationRef';
 
 import ProfileScreen from './src/screens/ProfileScreen';
 import FeedbackScreen from './src/screens/FeedbackScreen';
+import NewsScreen from './src/screens/NewsScreen';
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -34,29 +35,42 @@ const switchNavigator = createSwitchNavigator(
               },
         }),
         navigationOptions: {
-          tabBarLabel:() => {return null},
+          // tabBarLabel:() => {return null},
+          tabBarLabel: 'Beranda',
           tabBarIcon: ({ tintColor }) => (
-            <AntDesign name="home" color={ tintColor } size={30} />
+            <AntDesign name="home" color={ tintColor } size={25} />
           )
+        }
+      },
+      News: {
+        screen: NewsScreen, 
+        navigationOptions: {
+            //tabBarLabel: 'Berita', 
+            tabBarLabel: 'Beriita',
+            //tabBarLabel:() => {return null},
+            tabBarIcon: ({ tintColor }) => (
+              <FontAwesome name="newspaper-o" color={ tintColor } size={25} />
+            )
         }
       },
       Feedback: {
         screen: FeedbackScreen, 
         navigationOptions: {
             //tabBarLabel: 'Home', 
-            tabBarLabel:() => {return null},
+            tabBarLabel: 'Masukan',
+            //tabBarLabel:() => {return null},
             tabBarIcon: ({ tintColor }) => (
-              <AntDesign name="edit" color={ tintColor } size={30} />
+              <AntDesign name="edit" color={ tintColor } size={25} />
             )
         }
       },
       Profile: {
         screen: ProfileScreen, 
         navigationOptions: {
-            //tabBarLabel: 'Home', 
-            tabBarLabel:() => {return null},
+            tabBarLabel: 'Profil', 
+            //tabBarLabel:() => {return null},
             tabBarIcon: ({ tintColor }) => (
-              <AntDesign name="user" color={ tintColor } size={30} />
+              <AntDesign name="user" color={ tintColor } size={25} />
             )
         }
       }, 

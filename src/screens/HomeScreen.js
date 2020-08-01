@@ -74,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
       <TouchableOpacity
         onPress={() => navigation.navigate('Provinsi')}
       >
-      <Text style={styles.Provinsi}>Lihat data perprovinsi</Text>
+      <Text style={styles.Provinsi}>Lihat data lengkap</Text>
       </TouchableOpacity>
     </View>
     
@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   Provinsi : {
-    color : 'blue'
+    color : 'gray'
   }
 });
 
