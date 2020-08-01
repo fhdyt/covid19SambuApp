@@ -1,9 +1,12 @@
 import React, {useState, useEffect}  from 'react';
-import { View, StyleSheet, Text, ScrollView, ImageBackground } from 'react-native';
+import { View, StyleSheet, ScrollView, ImageBackground, Image } from 'react-native';
+import { Text } from 'react-native-elements';
 import { Header } from 'react-native-elements';
 import kawalcorona from '../api/kawalcorona';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-navigation';
+import globalStyles from '../styles/globalStyles';
+import HeaderTop from '../components/Header';
 
 const HomeScreen = ({ navigation }) => {
   
@@ -26,51 +29,53 @@ const HomeScreen = ({ navigation }) => {
     <SafeAreaView forceInset={{top: 'always'}}>
     <ScrollView>
     <View style={styles.container}>
-    <Text style={styles.Header}>Total Indonesia</Text>
-    <ImageBackground style={styles.backgroundStyle}
-      source={{ uri: 'https://www.icsi.org/wp-content/uploads/2020/04/shutterstock_1687243246-e1587657001683.jpg' }}
-      imageStyle={{ borderRadius: 10 }}
-    >
-    <View style={styles.backgroundView}>
-      <Text style={styles.total}>{result.positif}</Text>
-      <Text note style={styles.subtitle}>Positif</Text>
-    </View>
-    </ImageBackground>
+      <HeaderTop />
 
-    <ImageBackground style={styles.backgroundStyle}
-      source={{ uri: 'https://static.timesofisrael.com/www/uploads/2020/06/F200413NS29.jpg' }}
-      imageStyle={{ borderRadius: 10 }}
-    >
-    <View style={styles.backgroundView}>
-      <Text style={styles.total}>{result.sembuh}</Text>
-      <Text note style={styles.subtitle}>Sembuh</Text>
-    </View>
-    </ImageBackground>
+      <ImageBackground style={styles.backgroundStyle}
+        source={{ uri: 'https://www.icsi.org/wp-content/uploads/2020/04/shutterstock_1687243246-e1587657001683.jpg' }}
+        imageStyle={{ borderRadius: 10 }}
+      >
+      <View style={styles.backgroundView}>
+        <Text style={styles.total}>{result.positif}</Text>
+        <Text note style={styles.subtitle}>Positif</Text>
+      </View>
+      </ImageBackground>
 
-    <ImageBackground style={styles.backgroundStyle}
-      source={{ uri: 'https://www.mcall.com/resizer/eCAHCJeL2_eFlfeNHe97woNgrmU=/1200x0/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/KCSMSWAZMNACHIOWI53BHN242E.jpg' }}
-      imageStyle={{ borderRadius: 10 }}
-    >
-    <View style={styles.backgroundView}>
-      <Text style={styles.total}>{result.meninggal}</Text>
-      <Text style={styles.subtitle}>Meninggal</Text>
-    </View>
-    </ImageBackground>
+      <ImageBackground style={styles.backgroundStyle}
+        source={{ uri: 'https://static.timesofisrael.com/www/uploads/2020/06/F200413NS29.jpg' }}
+        imageStyle={{ borderRadius: 10 }}
+      >
+      <View style={styles.backgroundView}>
+        <Text style={styles.total}>{result.sembuh}</Text>
+        <Text note style={styles.subtitle}>Sembuh</Text>
+      </View>
+      </ImageBackground>
 
-    <ImageBackground style={styles.backgroundStyle}
-      source={{ uri: 'https://i0.wp.com/www.middleeastmonitor.com/wp-content/uploads/2020/03/20200330_2_41629245_53496497.jpg?resize=1200%2C777&quality=85&strip=all&zoom=1&ssl=1' }}
-      imageStyle={{ borderRadius: 10 }}
-    >
-    <View style={styles.backgroundView}>
-      <Text style={styles.total}>{result.dirawat}</Text>
-      <Text note style={styles.subtitle}>Dirawat</Text>
-    </View>
-    </ImageBackground>
-    <TouchableOpacity
-      onPress={() => navigation.navigate('Provinsi')}
-    >
-    <Text style={styles.Provinsi}>Lihat data perprovinsi</Text>
-    </TouchableOpacity>
+      <ImageBackground style={styles.backgroundStyle}
+        source={{ uri: 'https://www.mcall.com/resizer/eCAHCJeL2_eFlfeNHe97woNgrmU=/1200x0/top/arc-anglerfish-arc2-prod-tronc.s3.amazonaws.com/public/KCSMSWAZMNACHIOWI53BHN242E.jpg' }}
+        imageStyle={{ borderRadius: 10 }}
+      >
+      <View style={styles.backgroundView}>
+        <Text style={styles.total}>{result.meninggal}</Text>
+        <Text style={styles.subtitle}>Meninggal</Text>
+      </View>
+      </ImageBackground>
+
+      <ImageBackground style={styles.backgroundStyle}
+        source={{ uri: 'https://i0.wp.com/www.middleeastmonitor.com/wp-content/uploads/2020/03/20200330_2_41629245_53496497.jpg?resize=1200%2C777&quality=85&strip=all&zoom=1&ssl=1' }}
+        imageStyle={{ borderRadius: 10 }}
+      >
+      <View style={styles.backgroundView}>
+        <Text style={styles.total}>{result.dirawat}</Text>
+        <Text note style={styles.subtitle}>Dirawat</Text>
+      </View>
+      </ImageBackground>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Provinsi')}
+      >
+      <Text style={styles.Provinsi}>Lihat data perprovinsi</Text>
+      </TouchableOpacity>
     </View>
     
     </ScrollView>
@@ -78,12 +83,17 @@ const HomeScreen = ({ navigation }) => {
   )
 };
 
+HomeScreen.navigationOptions = ({ navigation }) => {
+  return {
+    header: () => false,
+  };
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 0,
-    marginHorizontal: 15,
+    marginTop: 15,
+    marginHorizontal: 20,
   },
   backgroundStyle: {
     marginTop: 10,
@@ -96,9 +106,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-
-elevation: 5,
-    
+    elevation: 5,
     marginBottom: 10,
   },
   backgroundView: {
@@ -118,11 +126,6 @@ elevation: 5,
     color:'white',
     fontSize: 18,
     fontWeight: 'bold'
-  },
-  Header: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#5f6769',
   },
   Provinsi : {
     color : 'blue'

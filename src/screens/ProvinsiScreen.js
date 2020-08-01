@@ -1,7 +1,9 @@
 import React, {useState, useEffect}  from 'react';
-import { View, StyleSheet, Text, Button, FlatList } from 'react-native';
+import { View, StyleSheet, Button, FlatList } from 'react-native';
+import { Text } from 'react-native-elements';
 import kawalcorona from '../api/kawalcorona';
 import { SafeAreaView } from 'react-navigation';
+import globalStyles from '../styles/globalStyles';
 
 const ProvinsiScreen = () => {
   const [term, setTerm] = useState('');
@@ -23,8 +25,7 @@ const ProvinsiScreen = () => {
   return (
 
     <View style={styles.container}>
-      <SafeAreaView forceInset={{top: 'always'}}>
-      <Text style={styles.Header}>Penyebaran Perprovinsi</Text>
+      <Text h3 style={globalStyles.Header}>Penyebaran Perprovinsi</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={result}
@@ -48,22 +49,26 @@ const ProvinsiScreen = () => {
           );
         }}
       />
-      </SafeAreaView>
     </View>
   )
+};
+
+ProvinsiScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title : '',
+    headerStyle: {
+      elevation: 0, // remove shadow on Android
+      shadowOpacity: 0, // remove shadow on iOS
+      backgroundColor: 'transparent'
+    },
+    
+  };
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginBottom: 50,
-    marginHorizontal: 15,
-  },
-  Header: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: '#5f6769',
-    marginBottom: 15
+    marginHorizontal: 20,
   },
   Card: {
     backgroundColor: '#f6f6f6',
