@@ -24,7 +24,7 @@ const ProfileScreen = () => {
             }
             iconLeft
             style={styles.signout} 
-            title=" Sign Out" 
+            title=" Keluar" 
             onPress={signout} />
         </SafeAreaView>
       </View>

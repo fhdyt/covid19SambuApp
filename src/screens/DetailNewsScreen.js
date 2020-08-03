@@ -14,8 +14,8 @@ const DetailNewsScreen = ({ navigation }) => {
                         />
         <View style={styles.container}>
             <Text style={styles.Author}>{item.author}</Text>
-            <Text h4 style={globalStyles.Header}>{item.title}</Text>
-            <Text h5>{item.description}</Text>
+            <Text h4 style={[globalStyles.Header, styles.Header]}>{item.title}</Text>
+            <Text h5 style={styles.Desc}>{item.description}</Text>
             <Button 
             title=" Selengkapnya" 
             onPress={ ()=>{ Linking.openURL(item.url)}}
@@ -50,6 +50,12 @@ const styles = StyleSheet.create({
       },
       Author: {
           marginTop: 15
+      },
+      Header: {
+        marginBottom: 10,
+      }, 
+      Desc: {
+        marginBottom: 10
       }
 });
 
