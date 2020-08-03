@@ -13,7 +13,7 @@ const ProvinsiScreen = () => {
     const response = await kawalcorona.get('/indonesia/provinsi');
     setResult(response.data);
     //setResult(response.data.filter(riau => riau.attributes.Kode_Provi === 14));
-    console.log(response.data);
+    //console.log(response.data);
   };
 
   useEffect(() => {
@@ -25,11 +25,11 @@ const ProvinsiScreen = () => {
   return (
 
     <View style={styles.container}>
-      <Text h3 style={globalStyles.Header}>Penyebaran Perprovinsi</Text>
+      <Text h3 style={[globalStyles.Header, styles.Header]}>Penyebaran Perprovinsi</Text>
       <FlatList
         showsVerticalScrollIndicator={false}
         data={result}
-        keyExtractor={(provinsi) => provinsi.attributes.Kode_Provi}
+      keyExtractor={(provinsi) => provinsi.attributes.Kode_Provi}
         renderItem={({ item }) => {
           return (
               <View style={styles.Card}>
@@ -68,11 +68,11 @@ ProvinsiScreen.navigationOptions = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 20,
   },
   Card: {
+    marginHorizontal: 20,
     backgroundColor: '#f6f6f6',
-    marginBottom: 10,
+    marginBottom: 15,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOffset: {
@@ -81,6 +81,8 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
+    elevation: 5,
+    
   },
   Provinsi: {
     fontWeight: 'bold',
@@ -94,7 +96,11 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginBottom : 10,
     color: '#777777'
-  }
+  },
+  Header: {
+    marginHorizontal:20,
+    marginBottom: 10
+},
 
 });
 

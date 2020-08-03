@@ -1,7 +1,6 @@
 import React, {useState, useEffect}  from 'react';
 import { View, StyleSheet, ScrollView, ImageBackground, Image } from 'react-native';
 import { Text } from 'react-native-elements';
-import { Header } from 'react-native-elements';
 import kawalcorona from '../api/kawalcorona';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-navigation';
@@ -30,7 +29,7 @@ const HomeScreen = ({ navigation }) => {
     <ScrollView>
     <View style={styles.container}>
       <HeaderTop />
-
+      <Text h4 style={globalStyles.Header}>Total Indonesia</Text>
       <ImageBackground style={styles.backgroundStyle}
         source={{ uri: 'https://www.icsi.org/wp-content/uploads/2020/04/shutterstock_1687243246-e1587657001683.jpg' }}
         imageStyle={{ borderRadius: 10 }}
@@ -94,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 15,
     marginHorizontal: 20,
+    marginBottom: 25
   },
   backgroundStyle: {
     marginTop: 10,

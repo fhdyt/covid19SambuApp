@@ -15,6 +15,7 @@ import { setNavigator } from './src/navigationRef';
 import ProfileScreen from './src/screens/ProfileScreen';
 import FeedbackScreen from './src/screens/FeedbackScreen';
 import NewsScreen from './src/screens/NewsScreen';
+import DetailNewsScreen from './src/screens/DetailNewsScreen';
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -42,15 +43,18 @@ const switchNavigator = createSwitchNavigator(
           )
         }
       },
-      News: {
-        screen: NewsScreen, 
+      newsFlow: {
+        screen: createStackNavigator({
+            News: NewsScreen,
+            DetailNews: DetailNewsScreen
+            },
+            ),
         navigationOptions: {
-            //tabBarLabel: 'Berita', 
-            tabBarLabel: 'Beriita',
-            //tabBarLabel:() => {return null},
-            tabBarIcon: ({ tintColor }) => (
-              <FontAwesome name="newspaper-o" color={ tintColor } size={25} />
-            )
+          // tabBarLabel:() => {return null},
+          tabBarLabel: 'Berita',
+          tabBarIcon: ({ tintColor }) => (
+            <FontAwesome name="newspaper-o" color={ tintColor } size={25} />
+          )
         }
       },
       Feedback: {
