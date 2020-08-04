@@ -8,9 +8,8 @@ const FeedbackScreen = () => {
     return (
         <View style={styles.container}>
             <SafeAreaView forceInset={{ top: 'always' }}>
-            <Text h3 style={globalStyles.Header}>Masukan</Text>
             
-            </SafeAreaView>
+    </SafeAreaView>
         </View>
     );
 }

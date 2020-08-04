@@ -1,19 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import { View, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, FlatList, Image, TouchableOpacity,Dimensions } from 'react-native';
 import { Text } from 'react-native-elements';
 import globalStyles from '../styles/globalStyles';
 import { SafeAreaView } from 'react-navigation';
 import newsapi from '../api/newsapi';
+import SkeletonContent from 'react-native-skeleton-content';
 
 const NewsScreen = ({ navigation }) => {
     const [result, setResult] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const { width, height } = Dimensions.get("window");
 
     const getNews = async id => {
-    const response = await newsapi.get('');
-    setResult(response.data.articles);
-    //setResult(response.data.filter(riau => riau.attributes.Kode_Provi === 14));
-    console.log(response.data.articles);
-  };
+        setLoading(true)
+        const response = await newsapi.get('')
+        .then((response) => {
+            setResult(response.data.articles);
+            setLoading(false)
+        }, (error) => {
+            console.log(error);
+        });
+    };
 
   useEffect(() => {
     getNews();
@@ -23,37 +30,68 @@ const NewsScreen = ({ navigation }) => {
         <View style={styles.container}>
             <SafeAreaView forceInset={{ top: 'always' }}>
             <Text h3 style={[globalStyles.Header, styles.Header]}>Berita</Text>
-            <FlatList
-            showsVerticalScrollIndicator={false}
-            data={result}
-            keyExtractor={(berita) => berita.articles}
-            renderItem={({ item }) => {
-            return (
-                <TouchableOpacity
-                    onPress={() => navigation.navigate('DetailNews', {item : item})}
-                >
-                <View style={styles.Card}>
-                    <Image style={styles.Image}
-                            source={{ uri: item.urlToImage }}
-                        />
-                    <View>
-                    <View style={styles.Title}>
-                        <Text style={styles.Judul}>
-                        {item.title}
-                        </Text>
-                        <Text style={styles.Desc}>
-                        {item.description}
-                        </Text>
-                        <Text style={styles.Sumber}>
-                        {item.source.name}
-                        </Text>
-                    </View>
-                </View>
-                </View>
-                </TouchableOpacity>
-            );
-            }}
-        />
+            { loading ? 
+            (
+                <>
+                <SkeletonContent
+                  containerStyle={{flex: 1, alignItems: 'center', marginTop: 15}}
+                  layout={[
+                    { key: '1', 
+                      height : 280, 
+                      width: width-50,
+                      borderRadius:15, 
+                      marginBottom: 20 
+                    },
+                    { key: '2', 
+                      height : 280, 
+                      width: width-50,
+                      borderRadius:15, 
+                      marginBottom: 20 
+                    },
+                    { key: '3', 
+                      height : 280, 
+                      width: width-50,
+                      borderRadius:15, 
+                      marginBottom: 20 
+                    }
+                  ]}
+                >  
+                </SkeletonContent>
+                </>
+            ):
+            (
+                <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={result}
+                    keyExtractor={(berita) => berita.articles}
+                    renderItem={({ item }) => {
+                    return (
+                        <TouchableOpacity
+                            onPress={() => navigation.navigate('DetailNews', {item : item})}
+                        >
+                        <View style={styles.Card}>
+                            <Image style={styles.Image}
+                                    source={{ uri: item.urlToImage }}
+                                />
+                            <View>
+                            <View style={styles.Title}>
+                                <Text style={styles.Judul}>
+                                {item.title}
+                                </Text>
+                                <Text style={styles.Desc}>
+                                {item.description}
+                                </Text>
+                                <Text style={styles.Sumber}>
+                                {item.source.name}
+                                </Text>
+                            </View>
+                        </View>
+                        </View>
+                        </TouchableOpacity>
+                    );
+                    }}
+                />
+            )}
             </SafeAreaView>
         </View>
     );
