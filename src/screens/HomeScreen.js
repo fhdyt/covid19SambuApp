@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-navigation';
 import globalStyles from '../styles/globalStyles';
 import HeaderTop from '../components/Header';
 import SkeletonContent from 'react-native-skeleton-content';
+import PTRView from 'react-native-pull-to-refresh';
 
 const HomeScreen = ({ navigation }) => {
   
@@ -34,6 +35,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     
     <SafeAreaView forceInset={{top: 'always'}}>
+      <PTRView onRefresh={getResult} >
       <ScrollView>
         <View style={styles.container}>
         <HeaderTop />
@@ -121,6 +123,7 @@ const HomeScreen = ({ navigation }) => {
             )}
         </View>
       </ScrollView>
+      </PTRView>
     </SafeAreaView>
   )
 };

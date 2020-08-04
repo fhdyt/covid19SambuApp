@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Image, Linking } from 'react-native';
+import { View, StyleSheet, Image, Linking, Dimensions } from 'react-native';
 import { Text, Button } from 'react-native-elements';
 import globalStyles from '../styles/globalStyles';
 
 const DetailNewsScreen = ({ navigation }) => {
 
     const item = navigation.state.params.item;
+    const { width, height } = Dimensions.get("window");
     console.log(navigation);
     return (
         <>

@@ -5,6 +5,7 @@ import globalStyles from '../styles/globalStyles';
 import { SafeAreaView } from 'react-navigation';
 import newsapi from '../api/newsapi';
 import SkeletonContent from 'react-native-skeleton-content';
+import PTRView from 'react-native-pull-to-refresh';
 
 const NewsScreen = ({ navigation }) => {
     const [result, setResult] = useState([]);
@@ -27,8 +28,9 @@ const NewsScreen = ({ navigation }) => {
   }, []);
 
     return (
-        <View style={styles.container}>
-            <SafeAreaView forceInset={{ top: 'always' }}>
+        <SafeAreaView forceInset={{ top: 'always' }}>
+            <PTRView onRefresh={getNews} >
+            <View style={styles.container}>           
             <Text h3 style={[globalStyles.Header, styles.Header]}>Berita</Text>
             { loading ? 
             (
@@ -60,6 +62,7 @@ const NewsScreen = ({ navigation }) => {
                 </>
             ):
             (
+                <>
                 <FlatList
                     showsVerticalScrollIndicator={false}
                     data={result}
@@ -91,9 +94,13 @@ const NewsScreen = ({ navigation }) => {
                     );
                     }}
                 />
+                </>
             )}
-            </SafeAreaView>
+            
         </View>
+        </PTRView>
+        </SafeAreaView>
+        
     );
 };
 
