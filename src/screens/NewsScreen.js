@@ -70,7 +70,7 @@ const NewsScreen = ({ navigation }) => {
                     renderItem={({ item }) => {
                     return (
                         <TouchableOpacity
-                            onPress={() => navigation.navigate('DetailNews', {item : item})}
+                            onPress={() => navigation.navigate('WebView', {item : item})}
                         >
                         <View style={styles.Card}>
                             <Image style={styles.Image}

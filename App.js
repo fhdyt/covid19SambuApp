@@ -16,6 +16,7 @@ import ProfileScreen from './src/screens/ProfileScreen';
 import FeedbackScreen from './src/screens/FeedbackScreen';
 import NewsScreen from './src/screens/NewsScreen';
 import DetailNewsScreen from './src/screens/DetailNewsScreen';
+import WebViewScreen from './src/screens/WebViewScreen';
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -46,7 +47,8 @@ const switchNavigator = createSwitchNavigator(
       newsFlow: {
         screen: createStackNavigator({
             News: NewsScreen,
-            DetailNews: DetailNewsScreen
+            //DetailNews: DetailNewsScreen,
+            WebView: WebViewScreen
             },
             ),
         navigationOptions: {

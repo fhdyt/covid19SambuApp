@@ -19,7 +19,7 @@ const DetailNewsScreen = ({ navigation }) => {
             <Text h5 style={styles.Desc}>{item.description}</Text>
             <Button 
             title=" Selengkapnya" 
-            onPress={ ()=>{ Linking.openURL(item.url)}}
+            onPress={ ()=>{ navigation.navigate('WebView', {item : item})}}
              />
         </View>
         </>
