@@ -20,6 +20,7 @@ import WebViewScreen from './src/screens/WebViewScreen';
 
 const switchNavigator = createSwitchNavigator(
   {
+    ResolveAuth: ResolveAuthScreen,
     loginFlow: createStackNavigator({
       Signin: SigninScreen,
       Signup: SignupScreen,
